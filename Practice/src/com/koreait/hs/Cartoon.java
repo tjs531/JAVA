@@ -7,7 +7,7 @@ public class Cartoon {
 	private String wri_drawing;
 	private String story;
 	private String genre;
-	private String age;
+	private String link;
 	
 	public String getImg() {
 		return img;
@@ -45,11 +45,11 @@ public class Cartoon {
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-	public String getAge() {
-		return age;
+	public String getLink() {
+		return link;
 	}
-	public void setAge(String age) {
-		this.age = age;
+	public void setLink(String link) {
+		this.link = link;
 	}
 	
 	

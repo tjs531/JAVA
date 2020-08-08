@@ -51,8 +51,8 @@ public class Crawler3 {
 				
 				//for(int i=0; i<img_tag.size(); i++) {
 					car.setImg(img_tag.get(0).toString().split(" ")[1].split("\"")[1]);
-					System.out.println("실제값 : " + idx + " " + img_tag.get(0).toString().split(" ")[1].split("\"")[1]);
-					System.out.println("객체값: " + idx++ + " " + car.getImg());
+					//System.out.println("실제값 : " + idx + " " + img_tag.get(0).toString().split(" ")[1].split("\"")[1]);
+					//System.out.println("객체값: " + idx++ + " " + car.getImg());
 					
 					car.setTitle(detail.get(0).getElementsByTag("h2").get(0).toString().split("<")[1].split("> ")[1]);
 					//System.out.println(detail.get(i).getElementsByTag("h2").get(0).toString().split("<")[1].split("> ")[1]);
@@ -74,10 +74,9 @@ public class Crawler3 {
 					car.setStory(sto);
 					
 					car.setGenre(detail.get(0).getElementsByClass("genre").get(0).toString().split(">")[1].split("<")[0]);
-					car.setAge(detail.get(0).getElementsByClass("age").get(0).toString().split(">")[1].split("<")[0]);
-				
 					
 					cartoon_list.add(car);
+					
 				//}
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
@@ -85,13 +84,16 @@ public class Crawler3 {
 			}
 			
 			
+			
 		}
-		/*for(Cartoon c : cartoon_list) {
+		
+		System.out.println();
+		for(Cartoon c : cartoon_list) {
 			System.out.println(c.getTitle());
 			System.out.println(c.getWri_story());
 			System.out.println(c.getWri_drawing());
 			System.out.println(c.getStory());
-		}*/
+		}
 			
 	}
 		

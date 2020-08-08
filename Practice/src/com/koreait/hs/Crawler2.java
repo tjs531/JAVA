@@ -18,9 +18,9 @@ public class Crawler2 {
 		//List<Cartoon> finish_car_list = getCartoonList("https://comic.naver.com/webtoon/finish.nhn");
 		
 		//System.out.println(car_list.get(0).getTitle());
-		//for(Cartoon c : car_list) {
-	//		System.out.println(c.getTitle().toString());
-	//	}
+		for(Cartoon c : car_list) {
+			System.out.println(c.getTitle().toString());
+		}
 	}
 	
 	
@@ -39,15 +39,10 @@ public class Crawler2 {
 		Cartoon car = new Cartoon();
 		
 		Connection conn = null;
-		int idx = 0;
-		
-				
-		System.out.println("test");
+
 		for(String u : list) {
-			//System.out.println(s);
 			
 			try {
-				//System.out.println("test");
 				conn = Jsoup.connect("https://comic.naver.com" + u);
 				Document html = conn.get();
 				
@@ -56,49 +51,34 @@ public class Crawler2 {
 				Elements img_tag = comicinfo.get(0).getElementsByTag("img");
 				Elements detail = comicinfo.get(0).getElementsByClass("detail");
 				
-				//System.out.println("test");
+				String im = img_tag.get(0).toString().split(" ")[1].split("\"")[1];
+				img.add(im);
 				
-				for(Element i : img_tag) {
-					String im = i.toString().split(" ")[1].split("\"")[1];
-					img.add(im);
-				}
+				String tit = detail.get(0).getElementsByTag("h2").get(0).toString().split("<")[1].split("> ")[1];
+				title.add(tit);
+			
 				
-				for(Element t : detail) {
-					String tit = t.getElementsByTag("h2").get(0).toString().split("<")[1].split("> ")[1];
-					title.add(tit);
-					System.out.println(idx++ + " " + tit);
-				}
-				
-				for(Element w : detail) {
-					String writ = w.getElementsByClass("wrt_nm").get(0).toString().split("> ")[1].split("<")[0];
-					writer.add(writ);
+				String writ = detail.get(0).getElementsByClass("wrt_nm").get(0).toString().split("> ")[1].split("<")[0];
+				writer.add(writ);
 
-				}
 				
-				for(Element s : detail) {
-					String[] st = s.getElementsByTag("p").get(0).toString().split("<br>");
-					String sto = "";
-					for(int i=0; i<st.length;i++) {
-						sto += st[i];
-						
-					}
-					sto = sto.split(">")[1].split("<")[0];
-					story.add(sto);
-				}
-				
-				for(Element g : detail) {
-					String ge = g.getElementsByClass("genre").get(0).toString().split(">")[1].split("<")[0];
-					//System.out.println(ge);
-					genre.add(ge);
-
-				}
-				
-				for(Element a : detail) {
-					String ag = a.getElementsByClass("age").get(0).toString().split(">")[1].split("<")[0];
-					//System.out.println(ag);
-					age.add(ag);
+				String[] st = detail.get(0).getElementsByTag("p").get(0).toString().split("<br>");
+				String sto = "";
+				for(int i=0; i<st.length;i++) {
+					sto += st[i];
 					
 				}
+				sto = sto.split(">")[1].split("<")[0];
+				story.add(sto);
+
+				
+				String ge = detail.get(0).getElementsByClass("genre").get(0).toString().split(">")[1].split("<")[0];
+				genre.add(ge);
+
+		
+				String ag = detail.get(0).getElementsByClass("age").get(0).toString().split(">")[1].split("<")[0];
+				age.add(ag);
+					
 				
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -122,10 +102,8 @@ public class Crawler2 {
 			}
 			car.setStory(story.get(i).toString());
 			car.setGenre(genre.get(i).toString());
-			car.setAge(age.get(i).toString());
 			cartoon_list.add(car);
 			
-			//System.out.println(cartoon_list.get(i).getTitle());
 		}
 		return cartoon_list;
 	}
