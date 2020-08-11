@@ -1,31 +1,58 @@
+import java.util.ArrayList;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Cartoon {
+	private String img;					//썸네일
 	private String title;
-	private String author;
-	private String age_grade;
+	private ArrayList<String> wri_story = new ArrayList<String>();
+	private ArrayList<String> wri_drawing = new ArrayList<String>();
+	private String story;
+	private ArrayList<String> genre = new ArrayList<String>();
+	private String link;				//작품 상세페이지 링크
 	
-	
-	
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
 	public String getTitle() {
 		return title;
 	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
-	public String getAuthor() {
-		return author;
+	public ArrayList<String> getWri_story() {
+		return wri_story;
 	}
-	public void setAuthor(String author) {
-		this.author = author;
+	public void setWri_story(String wri_story) {
+		this.wri_story.add(wri_story);
 	}
-	public String getAge_grade() {
-		return age_grade;
+	public ArrayList<String> getWri_drawing() {
+		return wri_drawing;
 	}
-	public void setAge_grade(String age_grade) {
-		this.age_grade = age_grade;
+	public void setWri_drawing(String wri_drawing) {
+		this.wri_drawing.add(wri_drawing);
+	}
+	public String getStory() {
+		return story;
+	}
+	public void setStory(String story) {
+		this.story = story;
+	}
+	public ArrayList<String> getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		(this.genre).add(genre);
+	}
+	public String getLink() {
+		return link;
+	}
+	public void setLink(String link) {
+		this.link = link;
 	}
 	
 }
