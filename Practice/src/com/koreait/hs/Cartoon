@@ -1,16 +1,14 @@
+package com.koreait.hs;
+
 import java.util.ArrayList;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Cartoon {
-	private String img;					//썸네일
+	private String img;
 	private String title;
-	private ArrayList<String> wri_story = new ArrayList<String>();
-	private ArrayList<String> wri_drawing = new ArrayList<String>();
+	private ArrayList<String> writer = new ArrayList<String>();
 	private String story;
 	private ArrayList<String> genre = new ArrayList<String>();
-	private String link;				//작품 상세페이지 링크
+	private String link;
 	
 	public String getImg() {
 		return img;
@@ -24,17 +22,12 @@ public class Cartoon {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public ArrayList<String> getWri_story() {
-		return wri_story;
+	public ArrayList<String> getWriter(){
+		return writer;
 	}
-	public void setWri_story(String wri_story) {
-		this.wri_story.add(wri_story);
-	}
-	public ArrayList<String> getWri_drawing() {
-		return wri_drawing;
-	}
-	public void setWri_drawing(String wri_drawing) {
-		this.wri_drawing.add(wri_drawing);
+	
+	public void setWriter(String writer) {
+		this.writer.add(writer);
 	}
 	public String getStory() {
 		return story;
@@ -46,7 +39,7 @@ public class Cartoon {
 		return genre;
 	}
 	public void setGenre(String genre) {
-		(this.genre).add(genre);
+		this.genre.add(genre);
 	}
 	public String getLink() {
 		return link;
@@ -55,4 +48,5 @@ public class Cartoon {
 		this.link = link;
 	}
 	
-}
+	
+} 
