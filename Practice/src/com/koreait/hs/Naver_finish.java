@@ -8,7 +8,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class Crawler4 {
+public class Naver_finish {
 	
 	public static void main(String[] args) {
 		List<Cartoon> list = get_cartoonList("https://comic.naver.com/webtoon/weekday.nhn");		//현재 연재중인 네이버 웹툰 리스트  
