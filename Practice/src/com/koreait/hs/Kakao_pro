@@ -1,0 +1,57 @@
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.*;
+
+import org.json.simple.*;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject; 
+
+public class KaKao {
+	
+	public static void main(String[] args) throws IOException {
+	
+	int idx =0;
+	String[] day = {"0","1","2","3","4","5","6","7","12"};
+	String[] bm = {"P","W"};
+	int idx2=0;
+	
+	for(int i=0; i<day.length; i++) {
+		for(int j=0; j<bm.length; j++) {
+			for(int z=0; z<10; z++) {
+				try{
+				String u="https://api2-page.kakao.com/api/v2/store/day_of_week_top/list?category=10&subcategory=0&page=" + z + "&day=" + day[i] + "&bm=" + bm[j] ;
+				URL url= new URL(u);
+				
+				
+				HttpURLConnection huc = (HttpURLConnection) url.openConnection();
+				huc.connect();
+				InputStreamReader isr = new InputStreamReader(huc.getInputStream(), "UTF-8");
+				JSONObject object = (JSONObject)JSONValue.parse(isr);
+				
+				ArrayList<Cartoon> list = new ArrayList<Cartoon>();
+				
+				JSONArray bodyArray = (JSONArray) object.get("list");
+				
+				for(int b=0; b<bodyArray.size(); b++) {
+					JSONObject body = (JSONObject)bodyArray.get(b);
+					Cartoon c = new Cartoon();
+					String title = body.get("title").toString();
+					//작가, 스토리는 상세페이지에서
+					//String author = ((JSONObject)bodyArray.get(z)).get("author").toString();
+					String img = "https://dn-img-page.kakao.com/download/resource?kid=" + body.get("square_thumbnail_url").toString();
+					System.out.println(title);
+					String link = "https://page.kakao.com/home?seriesId=" + body.get("series_id");
+					System.out.println(img);
+					System.out.println(link);
+				}
+				}catch(Exception e) {
+					break;
+				}
+			}	
+		
+		}
+	}
+	}
+}
